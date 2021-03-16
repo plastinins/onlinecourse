@@ -115,6 +115,7 @@ class Question(models.Model):
     def is_get_score(self, selected_ids):
        all_answers = self.choice_set.filter(is_correct=True).count()
        selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
+       # TODO it doesn't check wrong answers, so if you select all possible choices you'll win
        if all_answers == selected_correct:
            return True
        else:
